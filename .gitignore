@@ -1,0 +1,5 @@
+
+static/assets/
+node_modules/
+webpack-bundle.json
+*.DS_Store
