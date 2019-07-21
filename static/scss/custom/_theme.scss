@@ -1,3 +1,11 @@
-//
-//@import "";
+// theme mixins
+@import "mixins-custom";
+// theme components
+@import "navbar";
+@import "specific";
+@import "structure";
+@import "utils";
+@import "variables";
+// theme pages
+@import "front-page";
 

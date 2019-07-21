@@ -1,0 +1,194 @@
+
+.display-1, .display-2, .display-3, .display-4, .display-5 {
+  font-family: $font-family-sans-serif;
+  letter-spacing: normal;
+  line-height: $line-height-md;
+}
+
+.display-1 {
+  font-size: $display1-size;
+  font-weight: $font-weight-bold-bold;
+}
+
+.display-2 {
+  font-size: $display2-size;
+  font-weight: $font-weight-bold-bold;
+}
+
+.display-3 {
+  font-size: $display3-size;
+  font-weight: $font-weight-bold;
+}
+
+.display-4 {
+  font-size: $display4-size;
+  font-weight: $font-weight-bold;
+}
+
+.display-5 {
+  font-size: $display5-size;
+  font-weight: $font-weight-bold;
+}
+
+@include media-breakpoint-down(sm) {
+  .display-1 {
+    font-size: $display1-size-small;
+  }
+  .display-2 {
+    font-size: $display2-size-small;
+  }
+  .display-3 {
+    font-size: $display3-size-small;
+  }
+  .display-4 {
+    font-size: $display4-size-small;
+  }
+  .display-5 {
+    font-size: $display5-size-small;
+  }
+}
+
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+  font-family: $font-family-serif;
+  font-weight: $font-weight-bold;
+  letter-spacing: 1px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: .8rem !important;
+  line-height: 1.2 !important;
+}
+
+
+.text-content {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  ul,
+  ol,
+  blockquote {
+    margin-bottom: 2rem;
+  }
+}
+
+.lead {
+  font-size: $font-size-base * 1.8;
+  font-weight: $font-weight-light-light;
+}
+
+//
+// quote
+//
+
+.quote {
+  font-size: $font-size-base * 1.25;
+  font-weight: $font-weight-light-light;
+
+  &:before {
+    content: open-quote;
+  }
+
+  &:after {
+    content: close-quote;
+  }
+}
+
+//
+// link in paragraph
+//
+
+p {
+  a {
+    color: $white;
+    background-color: transparent;
+    border-bottom: 1px solid #fff;
+    box-shadow: inset 0 -1px 0 0;
+    transition: all .25s ease-out;
+    text-decoration: none;
+  }
+
+  a:hover {
+    box-shadow: inset 0 -2rem 0 0 $white;
+    color: $black;
+    text-decoration: none;
+  }
+
+  a.text-black:hover {
+    box-shadow: inset 0 -2rem 0 0 $black;
+    color: $white !important;
+    text-decoration: none;
+  }
+}
+
+//
+// blockquote
+//
+.blockquote {
+  margin-left: 3rem;
+  position: relative;
+  font-size: $font-size-base * 1.5;
+
+  &:before {
+    background-color: #ff9285;
+    display: block;
+    color: #0e0e0e;
+    content: "\201C";
+    font-size: 2rem;
+    font-weight: 400;
+    line-height: 1.4;
+    height: 2rem;
+    width: 2rem;
+    left: -3rem;
+    position: absolute;
+    text-align: center;
+    font-family: $font-family-serif;
+    top: 0;
+  }
+
+  .blockquote-footer {
+    font-weight: $font-weight-light;
+    font-size: 80%;
+    color: #595959;
+  }
+}
+
+.blockquote.text-center {
+  margin-left: 0;
+}
+
+.blockquote.text-center:before {
+  margin: 0 auto 1rem;
+  position: static;
+}
+
+.blockquote.text-right {
+  margin-left: 0;
+  margin-right: 3rem;
+}
+
+.blockquote.text-right:before {
+  content: "\201D";
+  left: inherit;
+  right: -3rem;
+}
+
+//
+// font
+//
+
+.font-xl {
+  font-size: $h6-font-size;
+}
+
+//
+// breadcrumbs
+//
+
+.breadcrumb {
+  font-size: $font-size-base * 0.9;
+}

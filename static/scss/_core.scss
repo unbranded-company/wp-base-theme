@@ -1,5 +1,7 @@
 // functions.scss - Bootstrap functions
 @import "bootstrap/functions";
+// custom variables + overrides of Bootstrap variables for this theme
+@import "custom/variables";
 // bootstrap main
 @import "bootstrap/bootstrap";
 // theme theme
