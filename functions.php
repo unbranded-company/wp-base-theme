@@ -2,7 +2,7 @@
 /**
  *
  * =====================================
- * wp-base-theme functions and definitions
+ * wp_base_theme functions and definitions
  * =====================================
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/

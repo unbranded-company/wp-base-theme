@@ -71,14 +71,15 @@ $headerHeight: 125px;
   $primary: #9a6ee2;
 }
 
-$primary: #ff9285 !default;
-$secondary: #e8e7e8 !default;
-$success: #00b16a !default;
-$info: #00acc1 !default;
-$warning: #f06005 !default;
-$danger: #ee1c25 !default;
-$light: #f2f1f1 !default;
-$dark: #262626 !default;
+
+$primary: $blue !default;
+$secondary: $gray-600 !default;
+$success: $green !default;
+$info: $cyan !default;
+$warning: $yellow !default;
+$danger: $red !default;
+$light: $gray-100 !default;
+$dark: $gray-800 !default;
 
 $theme-colors: () !default;
 $theme-colors: map-merge((

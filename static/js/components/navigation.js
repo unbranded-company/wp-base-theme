@@ -7,7 +7,7 @@
  */
 
 
-( function( $ ) {
 
+export default $(document).ready(function() {
 
-} )( jQuery );
+});

@@ -6,7 +6,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
  *
- * @package wp-base-theme
+ * @package wp_base_theme
  */
 
 ?>
