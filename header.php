@@ -14,7 +14,8 @@
 <html <?php language_attributes(); ?>>
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" charset="<?php bloginfo( 'description' ); ?>">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="profile" href="https://gmpg.org/xfn/11">
     <link rel="icon" type="image/png"
           href="<?php echo get_static("images/favicon.png") ?>">
