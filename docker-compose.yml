@@ -1,0 +1,49 @@
+version: '3.1'
+
+services:
+
+  wordpress:
+    container_name: wordpress
+    image: wordpress
+    restart: unless-stopped
+    ports:
+      - 8080:80
+    volumes:
+      - wp_data:/var/www/html
+      - ./wp-base-theme:/var/www/html/wp-content/themes/wp-base-theme
+      - ./plugins:/var/www/html/wp-content/plugins
+      - ./upload:/var/www/html/wp-content/upload
+    environment:
+      WORDPRESS_DB_HOST: "${DB_HOST}"
+      WORDPRESS_DB_USER: "${DB_USER}"
+      WORDPRESS_DB_PASSWORD: "${DB_PASSWORD}"
+      WORDPRESS_DB_NAME: "${DB_NAME}"
+
+  db:
+    container_name: db
+    image: mysql:5.7
+    restart: unless-stopped
+    volumes:
+      - db_data:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: "${DB_NAME}"
+      MYSQL_USER: "${DB_USER}"
+      MYSQL_PASSWORD: "${DB_PASSWORD}"
+      MYSQL_ROOT_PASSWORD: "${DB_ROOT_PASSWORD}"
+
+  pma:
+    image: phpmyadmin/phpmyadmin
+    container_name: pma
+    restart: unless-stopped
+    environment:
+      PMA_HOST: "${DB_HOST}"
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: "${DB_ROOT_PASSWORD}"
+    ports:
+      - 3333:80
+    links:
+      - db:db
+
+volumes:
+  wp_data:
+  db_data:
