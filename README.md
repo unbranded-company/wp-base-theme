@@ -1,4 +1,4 @@
-WP Base Theme (for Docker)
+WP Base Theme (with Docker)
 ===
 
 This repository contain the basic code to set up docker containers able to run a WordPress website, a mysql database and the phpMyAdmin administrator. 

@@ -45,6 +45,18 @@ services:
     links:
       - db:db
 
+  sph:
+    container_name: site-perms-helper
+    image: alpine:3.8
+    depends_on:
+      - wordpress
+    restart: "no"
+    networks:
+      - default
+    volumes:
+      - wp_data:/var/www/html
+    command: chown -Rf 33:33 /var/www/html/wp-content && chmod -R a=r,u+w,a+X /var/www/html/wp-content
+
 volumes:
   wp_data:
   db_data:
