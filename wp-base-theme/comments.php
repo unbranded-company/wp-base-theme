@@ -28,18 +28,18 @@ if ( post_password_required() ) {
 		?>
 		<h2 class="comments-title">
 			<?php
-			$wp_basic_theme_comment_count = get_comments_number();
-			if ( '1' === $wp_basic_theme_comment_count ) {
+			$wp_base_theme_comment_count = get_comments_number();
+			if ( '1' === $wp_base_theme_comment_count ) {
 				printf(
 					/* translators: 1: title. */
-					esc_html__( 'One thought on &ldquo;%1$s&rdquo;', 'wp-basic-theme' ),
+					esc_html__( 'One thought on &ldquo;%1$s&rdquo;', 'wp-base-theme' ),
 					'<span>' . get_the_title() . '</span>'
 				);
 			} else {
 				printf( // WPCS: XSS OK.
 					/* translators: 1: comment count number, 2: title. */
-					esc_html( _nx( '%1$s thought on &ldquo;%2$s&rdquo;', '%1$s thoughts on &ldquo;%2$s&rdquo;', $wp_basic_theme_comment_count, 'comments title', 'wp-basic-theme' ) ),
-					number_format_i18n( $wp_basic_theme_comment_count ),
+					esc_html( _nx( '%1$s thought on &ldquo;%2$s&rdquo;', '%1$s thoughts on &ldquo;%2$s&rdquo;', $wp_base_theme_comment_count, 'comments title', 'wp-base-theme' ) ),
+					number_format_i18n( $wp_base_theme_comment_count ),
 					'<span>' . get_the_title() . '</span>'
 				);
 			}
@@ -63,7 +63,7 @@ if ( post_password_required() ) {
 		// If comments are closed and there are comments, let's leave a little note, shall we?
 		if ( ! comments_open() ) :
 			?>
-			<p class="no-comments"><?php esc_html_e( 'Comments are closed.', 'wp-basic-theme' ); ?></p>
+			<p class="no-comments"><?php esc_html_e( 'Comments are closed.', 'wp-base-theme' ); ?></p>
 			<?php
 		endif;
 

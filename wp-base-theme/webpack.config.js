@@ -27,13 +27,11 @@ module.exports = (env, argv) => {
   let output;
 
   if (!devMode) {
-    const baseStaticPath = process.env.STATIC_URL || '/static/';
-    const publicPath = url.resolve(baseStaticPath, 'assets/');
     output = {
       path: resolve('static/assets/'),
       filename: '[name].[chunkhash].js',
       chunkFilename: '[name].[chunkhash].js',
-      publicPath: publicPath
+      publicPath: ''
     };
     fileLoaderPath = 'file-loader?name=[name].[hash].[ext]';
     extractCssPlugin = new MiniCssExtractPlugin({
@@ -45,7 +43,7 @@ module.exports = (env, argv) => {
       path: resolve('static/assets/'),
       filename: '[name].js',
       chunkFilename: '[name].js',
-      publicPath: '/static/assets/'
+      publicPath: ''
     };
     fileLoaderPath = 'file-loader?name=[name].[ext]';
     extractCssPlugin = new MiniCssExtractPlugin({
@@ -91,6 +89,14 @@ module.exports = (env, argv) => {
                 'sourceMap': true
               }
             }
+          ]
+        },
+        {
+          test: /\.(eot|otf|png|svg|jpg|ttf|woff|woff2)(\?v=[0-9.]+)?$/,
+          loader: fileLoaderPath,
+          include: [
+            resolve('static/fonts'),
+            resolve('static/images')
           ]
         }
       ]
