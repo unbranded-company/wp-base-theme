@@ -10,7 +10,7 @@ services:
       - ${PORT_WP}:80
     volumes:
       - wp_data:/var/www/html
-      - ."/${FOLDER_THEME}":/var/www/html/wp-content/themes/${FOLDER_THEME}
+      - ./${FOLDER_THEME}:/var/www/html/wp-content/themes/${FOLDER_THEME}
       - ./plugins:/var/www/html/wp-content/plugins
       - ./uploads:/var/www/html/wp-content/uploads
     environment:
