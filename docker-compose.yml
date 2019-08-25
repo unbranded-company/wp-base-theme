@@ -8,16 +8,24 @@ services:
     restart: unless-stopped
     ports:
       - ${PORT_WP}:80
+    working_dir: /var/www/html
     volumes:
       - wp_data:/var/www/html
       - ./${FOLDER_THEME}:/var/www/html/wp-content/themes/${FOLDER_THEME}
       - ./plugins:/var/www/html/wp-content/plugins
       - ./uploads:/var/www/html/wp-content/uploads
+      - ./uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
+      - ./startup.sh:/startup.sh
+    entrypoint: /startup.sh
     environment:
       WORDPRESS_DB_HOST: "${DB_HOST}"
       WORDPRESS_DB_USER: "${DB_USER}"
       WORDPRESS_DB_PASSWORD: "${DB_PASSWORD}"
       WORDPRESS_DB_NAME: "${DB_NAME}"
+      VIRTUAL_HOST: wpbasetheme.com
+      VIRTUAL_PORT: ${PORT_WP}
+      LETSENCRYPT_HOST: wpbasetheme.com
+      LETSENCRYPT_EMAIL: info@wpbasetheme.com
     expose:
       - ${PORT_WP}
 
@@ -54,18 +62,11 @@ services:
     expose:
       - ${PORT_PMA}
 
-  permissions:
-    container_name: ${PROJECT_NAME}_perm
-    image: alpine:3.8
-    depends_on:
-      - wp
-    restart: "no"
-    networks:
-      - default
-    volumes:
-      - wp_data:/var/www/html
-    command: chown -Rf 33:33 /var/www/html/wp-content && chmod -R a=r,u+w,a+X /var/www/html/wp-content
-
 volumes:
   wp_data:
   db_data:
+
+networks:
+  default:
+    external:
+      name: nginx-proxy
