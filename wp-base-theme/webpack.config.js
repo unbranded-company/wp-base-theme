@@ -96,21 +96,8 @@ module.exports = (env, argv) => {
           loader: "style-loader!css-loader"
         },
         {
-          test: /\.(jpg|png|svg)$/,
-          use: {
-            loader: 'url-loader',
-            options: {
-              limit: 25000
-            }
-          }
-        },
-        {
           test: /\.(eot|otf|png|svg|jpg|ttf|woff|woff2)(\?v=[0-9.]+)?$/,
           loader: fileLoaderPath,
-          include: [
-            resolve('static/fonts'),
-            resolve('static/images')
-          ]
         }
       ]
     },
