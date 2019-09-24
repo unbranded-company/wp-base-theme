@@ -5,10 +5,14 @@ services:
   wp:
     container_name: ${PROJECT_NAME}_wp
     image: wordpress
+    depends_on:
+      - db
     restart: unless-stopped
+    networks:
+      - internal
+      - web
     ports:
       - ${PORT_WP}:80
-    working_dir: /var/www/html
     volumes:
       - wp_data:/var/www/html
       - ./${FOLDER_THEME}:/var/www/html/wp-content/themes/${FOLDER_THEME}
@@ -22,10 +26,12 @@ services:
       WORDPRESS_DB_USER: "${DB_USER}"
       WORDPRESS_DB_PASSWORD: "${DB_PASSWORD}"
       WORDPRESS_DB_NAME: "${DB_NAME}"
-      VIRTUAL_HOST: wpbasetheme.com
-      VIRTUAL_PORT: ${PORT_WP}
-      LETSENCRYPT_HOST: wpbasetheme.com
-      LETSENCRYPT_EMAIL: info@wpbasetheme.com
+    labels:
+      - "traefik.docker.network=web"
+      - "traefik.enable=true"
+      - "traefik.frontend.rule=Host:${URL_SITE}"
+      - "traefik.port=80"
+      - "traefik.protocol=http"
     expose:
       - ${PORT_WP}
 
@@ -33,6 +39,8 @@ services:
     container_name: ${PROJECT_NAME}_db
     image: mysql:8.0
     restart: unless-stopped
+    networks:
+      - internal
     ports:
       - ${PORT_DB}:3306
     volumes:
@@ -43,6 +51,8 @@ services:
       MYSQL_USER: "${DB_USER}"
       MYSQL_PASSWORD: "${DB_PASSWORD}"
       MYSQL_ROOT_PASSWORD: "${DB_ROOT_PASSWORD}"
+    labels:
+      - "traefik.enable=false"
     expose:
       - ${PORT_DB}
   pma:
@@ -51,12 +61,21 @@ services:
     depends_on:
       - db
     restart: unless-stopped
+    networks:
+      - internal
+      - web
     ports:
       - ${PORT_PMA}:80
     environment:
       PMA_HOST: "${DB_HOST}"
       PMA_PORT: db
       MYSQL_ROOT_PASSWORD: "${DB_ROOT_PASSWORD}"
+    labels:
+      - "traefik.docker.network=web"
+      - "traefik.enable=true"
+      - "traefik.frontend.rule=Host:${URL_PMA}"
+      - "traefik.port=80"
+      - "traefik.protocol=http"
     links:
       - db
     expose:
@@ -66,3 +85,8 @@ volumes:
   wp_data:
   db_data:
 
+networks:
+  web:
+    external: true
+  internal:
+    external: false
